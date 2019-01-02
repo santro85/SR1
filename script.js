@@ -13,15 +13,8 @@ let log = console.log.bind(console),
   media;
 
 
-//gUMbtn.onclick = e => {
-	// mv = id('mediaVideo'),
   let mediaOptions = {
-        // video: {
-          // tag: 'video',
-          // type: 'video/webm',
-          // ext: '.mp4',
-          // gUM: {video: true, audio: true}
-        // },
+        
         audio: {
           tag: 'audio',
           type: 'audio/ogg',
@@ -32,8 +25,7 @@ let log = console.log.bind(console),
   media = mediaOptions.audio;
   navigator.mediaDevices.getUserMedia(media.gUM).then(_stream => {
     stream = _stream;
-    //id('gUMArea').style.display = 'none';
-    //id('btns').style.display = 'inherit';
+   
     start.removeAttribute('disabled');
     recorder = new MediaRecorder(stream);
     recorder.ondataavailable = e => {
@@ -42,7 +34,7 @@ let log = console.log.bind(console),
     };
     log('got media successfully');
   }).catch(log);
-//}
+
 
 start.onclick = e => {	
 $("#ul").html("");
@@ -62,6 +54,7 @@ stop.onclick = e => {
 
 
 function makeLink(){
+	
   let blob = new Blob(chunks, {type: media.type })
     , url = URL.createObjectURL(blob)
     , li = document.createElement('li')
@@ -69,10 +62,13 @@ function makeLink(){
     , hf = document.createElement('a')
   ;
   mt.controls = true;
-  debugger;
   mt.src = url;
+  
+  
   hf.href = url;
   hf.download = `${counter++}${media.ext}`;
+
+  //hf.download = new Date().toISOString() + '.mp3';
   hf.innerHTML = `donwload ${hf.download}`;
   li.appendChild(mt);
   li.appendChild(hf);
@@ -81,7 +77,7 @@ function makeLink(){
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
-    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+    navigator.serviceWorker.register('/SW.js').then(function(registration) {
       // Registration was successful
       console.log('ServiceWorker registration successful with scope: ', registration.scope);
     }, function(err) {
