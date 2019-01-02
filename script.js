@@ -66,7 +66,7 @@ function makeLink(){
   
   
   hf.href = url;
-  hf.download = counter+++ '.wav';
+  hf.download = counter+++ '.mp3';
 
   //hf.download = new Date().toISOString() + '.mp3';
   hf.innerHTML = `donwload${hf.download}`;
