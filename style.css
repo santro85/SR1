@@ -1,0 +1,15 @@
+button{
+        margin: 10px 5px;
+      }
+      li{
+        margin: 10px;
+      }
+      body{
+        width: 90%;
+        max-width: 960px;
+        margin: 0px auto;
+      }
+     
+      h1{
+        margin: 100px;
+      }
