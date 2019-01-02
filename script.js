@@ -14,8 +14,8 @@ let log = console.log.bind(console),
   let mediaOptions = {       
         audio: {
           tag: 'audio',
-          type: 'audio/mp3',
-          ext: '.mp3',
+          type: 'audio/wav',
+          ext: '.wav',
           gUM: {audio: true}
         }
       };
