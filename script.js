@@ -3,7 +3,6 @@
 let log = console.log.bind(console),
   id = val => document.getElementById(val),
   ul = id('ul'),
-  gUMbtn = id('gUMbtn'),
   start = id('start'),
   stop = id('stop'),
   stream,
@@ -12,20 +11,17 @@ let log = console.log.bind(console),
   chunks,
   media;
 
-
-  let mediaOptions = {
-        
+  let mediaOptions = {       
         audio: {
           tag: 'audio',
-          type: 'audio/ogg',
-          ext: '.ogg',
+          type: 'audio/mp3',
+          ext: '.mp3',
           gUM: {audio: true}
         }
       };
   media = mediaOptions.audio;
   navigator.mediaDevices.getUserMedia(media.gUM).then(_stream => {
     stream = _stream;
-   
     start.removeAttribute('disabled');
     recorder = new MediaRecorder(stream);
     recorder.ondataavailable = e => {
@@ -54,7 +50,6 @@ stop.onclick = e => {
 
 
 function makeLink(){
-	
   let blob = new Blob(chunks, {type: media.type })
     , url = URL.createObjectURL(blob)
     , li = document.createElement('li')
@@ -63,17 +58,14 @@ function makeLink(){
   ;
   mt.controls = true;
   mt.src = url;
-  
-  
   hf.href = url;
-  hf.download = counter+++ '.mp3';
-
-  //hf.download = new Date().toISOString() + '.mp3';
-  hf.innerHTML = `donwload${hf.download}`;
+  hf.download = `${counter++}${media.ext}`;
+  hf.innerHTML = `donwload ${hf.download}`;
   li.appendChild(mt);
   li.appendChild(hf);
   ul.appendChild(li);
 }
+
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
